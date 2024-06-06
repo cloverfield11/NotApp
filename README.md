@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+NotApp
+===============
 
-## Getting Started
+<img width="1920" alt="Снимок экрана 2024-06-06 в 17 55 18" src="https://github.com/cloverfield11/NotApp/assets/130602166/8224de8d-da56-4610-96ef-d87c30254995">
 
-First, run the development server:
 
+NotApp is a web-based minigame built using Next.js and Tailwind CSS special for NOT ART contest. What it's about - you'll have to find out for yourself. I'll say one thing - this game has a beginning and an end :)
+
+Getting Started
+---------------
+
+To get started with Not Coin Clicker, you can either clone the repository and run it locally or access the deployed version of the game.
+
+### Cloning the Repository
+
+To clone the repository, you can use the following command:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/cloverfield11/NotApp
 ```
+Once the repository is cloned, navigate to the project directory and install the required dependencies using the following command:
+```csharp
+npm install
+```
+After the dependencies are installed, you can run the project locally using the following command:
+```
+npm run dev
+```
+The project will be accessible at `http://localhost:3000`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Accessing the Deployed Version
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The deployed version of Not Coin Clicker is accessible at the following link: [NotApp](https://notapp.cloverfield11.ru)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Features
+--------
 
-## Learn More
+You'll have to find out
 
-To learn more about Next.js, take a look at the following resources:
+Contributing
+------------
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Not Coin Clicker is an open-source project, and contributions are always welcome. If you would like to contribute to the project, you can fork the repository and submit a pull request with your changes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+License
+-------
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Not Coin Clicker is licensed under the MIT License.
