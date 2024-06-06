@@ -31,6 +31,8 @@ export default function Home() {
   const [showErrorhand, setShowErrorhand] = useState(false);
   const [showFinalCoin, setShowFinalCoin] = useState(false);
   const [showBlackScreen, setShowBlackScreen] = useState(false);
+  const [showSigmaFace, setShowSigmaFace] = useState(false);
+  const [showSigmaText, setShowSigmaText] = useState(false);
   const controls = useAnimation();
 
   const buttonImageRef = useRef(null);
@@ -420,6 +422,15 @@ export default function Home() {
     setModalText('');
     setModalComplete(false);
 
+    if (clicks === 272) {
+      setTimeout(() => {
+        setShowSigmaFace(true);
+      }, 2000);
+      setTimeout(() => {
+        setShowSigmaText(true);
+      }, 4000);
+    }
+
     if (clicks === 5 || clicks === 24 || clicks === 40) {
       setClickAllowed(true);
     } else if (clicks === 8 && currentIndex < secondModalBotReplies.length - 1 && currentIndex < secondModalUserReplies.length - 1) {
@@ -759,6 +770,7 @@ export default function Home() {
           </div>
         </div>
       )}
+
       <Head>
         <title>Not WebApp</title>
         <link rel="icon" href="/favicon.ico" />
@@ -818,8 +830,6 @@ export default function Home() {
             ))}
           </div>
         )}
-        <p className="text-2xl text-gray-500">Count: {clicks}</p>
-        <p className="text-2xl text-gray-500">CPS: {cps}</p>
       </main>
 
       {showModal && (
@@ -874,13 +884,25 @@ export default function Home() {
       {showFinalCoin && (
         <div className="absolute top-50 left-50 w-100 h-100">
           <img src="/finalcoin.gif" alt="Final Coin Background" className="w-full h-full object-cover" />
-          <p className="text-2xl text-gray-500">Count: {clicks}</p>
         </div>
       )}
 
       {showBlackScreen && (
-        <div className="center-content absolute top-0 left-0 w-full h-full bg-black">
-        <img src="/sigmaface.png" alt="Final Coin Background" className="w-full h-full object-cover2" />
+        <div className="absolute top-0 left-0 w-full h-full bg-black flex flex-col items-center justify-center">
+          {showSigmaFace && (
+            <img src="/sigmaface.png" alt="Final Coin Background" className="w-full max-w-xl h-full max-h-xl object-cover2" />
+          )}
+          {showSigmaText && (
+            <div className="w-full max-w-xl px-4 pb-4">
+              <p className="mt-10 text-center text-gray-300 text-5xl">The End</p>
+              <p className="mt-10 text-center text-gray-300 text-2xl">Was made special for NOT ART contest</p>
+              <p className="mt-2 text-center text-gray-300 text-2xl">Notcoin 2.0 now on{" "}
+                <a href="https://t.me/notcoin_bot" target="_blank" rel="noopener noreferrer" className="text-white underline">
+                  @notcoin_bot
+                </a>{" "}
+                in Telegram</p>
+            </div>
+          )}
         </div>
       )}
 
@@ -910,169 +932,6 @@ export default function Home() {
           <BsTwitterX size={32} />
         </a>
       </footer>
-      <style jsx>{`
-      .button-image {
-        transition: transform 0.3s ease;
-        border-radius: 50%;
-      }
-      .button-image:active {
-        transform: scale(0.95);
-      }
-      .marquee {
-        width: 100%;
-        height: 40px;
-        overflow: hidden;
-        position: relative;
-      }
-      .marquee-inner {
-        width: 200%;
-        height: 40px;
-        position: absolute;
-        animation: marquee 10s linear infinite;
-      }
-
-      .marquee-inner span {
-        float: left;
-        width: 50%;
-        text-align: center;
-        font-size: 2rem;
-        font-weight: bold;
-      }
-      @keyframes marquee {
-        0% {
-          left: 0;
-        }
-        100% {
-          left: -100%;
-        }
-      }
-      .pointer-events-none {
-        pointer-events: none;
-      }
-      .pointer-events-auto {
-        pointer-events: auto;
-      }
-      .flash {
-        animation: flashAnimation 5s forwards;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 9999 !important;
-      }
-      @keyframes flashAnimation {
-        0% {
-          background-color: white;
-        }
-        100% {
-          background-color: black;
-        }
-      }
-      .motivation-enter {
-        animation: motivation-slide-up 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      }
-      .motivation-exit {
-        animation: motivation-slide-down 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      }
-      @keyframes motivation-slide-up {
-        0% {
-          transform: translateY(100vh);
-          opacity: 0;
-        }
-        60% {
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(-100vh);
-          opacity: 0;
-        }
-      }
-      @keyframes motivation-slide-down {
-        0% {
-          transform: translateY(-100vh);
-          opacity: 0;
-        }
-        60% {
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(100vh);
-          opacity: 0;
-        }
-      }
-      .speech-bubble {
-        display: inline-block;
-        position: relative;
-        padding: 1rem;
-        background-color: #fff;
-        border-radius: 1rem;
-        border: 2px solid #000;
-        max-width: 80%;
-        left: 40%;
-        top: -240px;
-        transform: translateX(-50%);
-      }
-      .speech-bubble-text {
-        font-size: 1.2rem;
-        line-height: 1.5;
-        text-align: center;
-      }
-      .dude3-image {
-        max-width: 50%;
-        height: auto;
-      }
-      .modal-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 1);
-        z-index: 999;
-      }
-      @media (max-width: 768px) {
-        footer {
-          display: none;
-        }
-      }
-      .errorhand-image {
-        max-width: 35%;
-        height: auto;
-        /* animation: slide-up 2s ease-out forwards; */
-      }
-      .slide-up {
-        animation: slide-up 1s ease-out forwards;
-      }
-      
-      @keyframes slide-up {
-        0% {
-          transform: translateY(100%);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      .object-fit-contain {
-  object-fit: contain;
-  object-position: center;
-}
-.object-cover2 {
-  object-fit: contain;
-  left: 50;
-  top: 50;
-  height: 50%;
-}
-.center-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-    `}</style>
     </div>
   );
 }
