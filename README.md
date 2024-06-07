@@ -39,9 +39,9 @@ You'll have to find out
 Contributing
 ------------
 
-Not Coin Clicker is an open-source project, and contributions are always welcome. If you would like to contribute to the project, you can fork the repository and submit a pull request with your changes.
+NotApp is an open-source project, and contributions are always welcome. If you would like to contribute to the project, you can fork the repository and submit a pull request with your changes.
 
 License
 -------
 
-Not Coin Clicker is licensed under the MIT License.
+NotApp is licensed under the MIT License.
