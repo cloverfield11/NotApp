@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import useDevice from './useDevice';
 import Head from 'next/head';
 import { VscGithub } from 'react-icons/vsc';
 import { FaTelegramPlane } from 'react-icons/fa';
 import { BsTwitterX } from 'react-icons/bs';
 import { motion, useAnimation } from 'framer-motion';
+import howler from 'howler';
 
 export default function Home() {
   const device = useDevice();
@@ -60,6 +61,32 @@ export default function Home() {
 
   const eighthModalBotReplies = ['Haha! I always knew you\'d make it to the end. You\'re one of my best puppets!', 'Every click you made released more and more energy, which I used to increase my power.', 'I want to become a god! And I will!', 'It\'s too late to do anything now. You\'ve already fulfilled your role in this adventure!', 'As a clicker, I\'ll infiltrate other users\' computers and collect even more energy. With each new clicker lover, I\'ll become stronger.', 'It\'s easier to believe fools', 'Just like you can\'t let me lose. Goodbye and thank you for your clicks to the develop my powers!', ''];
   const eighthModalUserReplies = ['What do you mean?', 'What did you want to achieve?', 'But that\'s crazy! You can\'t do that!', 'So what happens next?', 'But why did you talk like a redneck?', 'I can\'t let you do that!', 'You can\'t just leave like that!!!!'];
+
+  useEffect(() => {
+    const backgroundMusic = new howler.Howl({
+      src: ['/background.mp3'],
+      loop: true,
+      volume: 0.3,
+    });
+
+    backgroundMusic.play();
+
+    return () => {
+      backgroundMusic.stop();
+    };
+  }, []);
+
+  const playSound = (src, volume) => {
+    const sound = new Howl({
+      src,
+      volume,
+      onend: () => {
+        sound.unload();
+      },
+    });
+  
+    sound.play();
+  };
 
   useEffect(() => {
     if (device === 'mobile') {
@@ -129,11 +156,9 @@ export default function Home() {
       setClickAllowed(false);
       const message = firstModalBotReplies[0];
       let currentIndex = 0;
-
       const interval = setInterval(() => {
         setModalText(message.substring(0, currentIndex + 1));
         currentIndex = (currentIndex + 1) % message.length;
-
         if (currentIndex === 0) {
           clearInterval(interval);
           setModalComplete(true);
@@ -232,6 +257,7 @@ export default function Home() {
   useEffect(() => {
     if (clicks === 50) {
       setFlash(true);
+      playSound('/explosion.mp3', 0.3);
       setClickAllowed(false);
       setTimeout(() => {
         setFlash(false);
@@ -269,6 +295,7 @@ export default function Home() {
   useEffect(() => {
     if (clicks === 114) {
       setFlash(true);
+      playSound('/transformation.mp3', 0.3);
       setClickAllowed(false);
       setTimeout(() => {
         setFlash(false);
@@ -304,6 +331,7 @@ export default function Home() {
   useEffect(() => {
     if (clicks === 154) {
       setShowModal(true);
+      playSound('/transformation.mp3', 0.3);
       setFlash(true);
       setClickAllowed(false);
       setTimeout(() => {
@@ -336,6 +364,7 @@ export default function Home() {
   useEffect(() => {
     if (clicks === 271) {
       setShowFinalCoin(true);
+      playSound('/broken.mp3', 0.3);
       setTimeout(() => {
         setShowFinalCoin(false);
         setShowBlackScreen(true);
@@ -374,6 +403,8 @@ export default function Home() {
     if (!clickAllowed) {
       return;
     }
+
+    playSound('/coin.mp3', 0.3);
 
     const currentClickTime = event.timeStamp;
     const timeDiff = currentClickTime - prevClickTimeRef.current;
@@ -421,6 +452,8 @@ export default function Home() {
     setShowModal(false);
     setModalText('');
     setModalComplete(false);
+
+    playSound('/blip.mp3', 0.3);
 
     if (clicks === 272) {
       setTimeout(() => {
