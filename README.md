@@ -27,10 +27,6 @@ npm run dev
 ```
 The project will be accessible at `http://localhost:3000`.
 
-### Accessing the Deployed Version
-
-The deployed version of Not Coin Clicker is accessible at the following link: [NotApp](https://notapp.cloverfield11.ru)
-
 Features
 --------
 
